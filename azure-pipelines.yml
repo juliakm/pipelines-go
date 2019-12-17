@@ -4,12 +4,12 @@ trigger:
  - master
 
 pool:
-   vmImage: 'ubuntu-latest'
+   vmImage: 'vs2017-win2016'
 
 steps: 
 - task: GoTool@0
   inputs:
-    version: '1.13'
+    version: '1.11.5'
 - task: Go@0
   inputs:
     command: 'get'
@@ -18,8 +18,8 @@ steps:
 - task: Go@0
   inputs:
     command: 'build'
-    arguments: '-v'
-    workingDirectory: '$(modulePath)'
+    arguments: '-o "$(System.TeamProject).exe"'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
 
 - task: ArchiveFiles@2
   inputs:
