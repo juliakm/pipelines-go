@@ -18,7 +18,7 @@ steps:
 - task: Go@0
   inputs:
     command: 'build'
-    arguments: '-o "$(System.TeamProject).exe"'
+    arguments: '-o "$(System.TeamProject).go"'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 
 - task: ArchiveFiles@2
