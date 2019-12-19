@@ -21,15 +21,9 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(Build.Repository.LocalPath)'
-    #contents: '**/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
+    #sourceFolder: '$(Build.Repository.LocalPath)'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-
-# - task: ArchiveFiles@2
-#   inputs:
-#      rootFolderOrFile: '$(Build.Repository.LocalPath)'     
-#      includeRootFolder: False 
 - task: PublishBuildArtifacts@1
   inputs:
      artifactName: drop
