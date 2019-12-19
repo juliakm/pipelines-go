@@ -16,14 +16,11 @@ steps:
 - task: Go@0
   inputs:
     command: 'build'
-    arguments: '-o "$(System.TeamProject)"'
+    #arguments: '-o "$(System.TeamProject)"'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
-
 - task: CopyFiles@2
   inputs:
-    #sourceFolder: '$(Build.Repository.LocalPath)'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - task: PublishBuildArtifacts@1
   inputs:
      artifactName: drop
