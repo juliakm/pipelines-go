@@ -23,3 +23,9 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
      artifactName: drop
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo $(build.containerId)
