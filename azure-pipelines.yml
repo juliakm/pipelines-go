@@ -20,12 +20,12 @@ steps:
 - task: CopyFiles@2
   inputs:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-- task: CopyFiles@2
-  displayName: 'Copy Files to: \\storage\$(Build.BuildNumber)'
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory))'
-    Contents: '_buildOutput/**'
-    TargetFolder: '\\storage\$(Build.BuildNumber)'
 - task: PublishBuildArtifacts@1
   inputs:
      artifactName: drop
+- task: CopyFiles@2
+  displayName: 'Copy Files to: \\storage\$(Build.BuildNumber)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**'
+    TargetFolder: '\\storage\$(Build.BuildNumber)'
