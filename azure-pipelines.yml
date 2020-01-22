@@ -24,8 +24,8 @@ steps:
   inputs:
      artifactName: drop
 - task: CopyFiles@2
-  displayName: 'Copy Files to: \\storage\$(Build.BuildNumber)'
+  displayName: 'Copy Files to: \\mypath\storage\$(Build.BuildNumber)'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**' #replace with file path if needed
-    TargetFolder: '\\storage\$(Build.BuildNumber)'
+    TargetFolder: '\\mypath\storage\$(Build.BuildNumber)'
