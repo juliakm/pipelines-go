@@ -28,4 +28,4 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '_buildOutput/**' #replace with file path if needed
-    TargetFolder: '\\mypath\storage\$(Build.BuildNumber)'
+    TargetFolder: '\mypath\storage\$(Build.BuildNumber)'
