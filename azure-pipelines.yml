@@ -33,4 +33,4 @@ steps:
 - task: Go@0
   inputs:
     command: 'test'
-    arguments: '-v'
+    arguments: -cover'
