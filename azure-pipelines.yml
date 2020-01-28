@@ -33,4 +33,5 @@ steps:
 - task: Go@0
   inputs:
     command: 'test'
-    arguments: '-cover'
+    arguments: '-v ./...'
+    workingDirectory: '$(modulePath)'
