@@ -23,15 +23,41 @@ steps:
     echo '##vso[task.prependpath]$(GOROOT)/bin'
   displayName: 'Set up the Go workspace'
 
-- script: |
-    go version
-    if [ -f Gopkg.toml ]; then
-        curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-        # dep ensure
-    fi
-    go build -v .
- #workingDirectory: '$(modulePath)'
-  displayName: 'Get dependencies, then build'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Installing Dep ..."
+      go get -u github.com/golang/dep/cmd/dep
+      echo "Adding GOBIN to path: $env:GOBIN"
+      $env:PATH += ":$env:GOBIN"
+      echo "Added $env:GOBIN to path $env:PATH"
+      
+      echo "Moving source files"
+      
+      Copy-Item $env:ProjectRoot -Filter *.* -Destination $env:GOPATH/src/demo.organization.com -Recurse
+      $env:ProjectRoot = "$env:GOPATH/src/demo.organization.com"
+      
+      echo "moving to $env:ProjectRoot"
+      cd $env:ProjectRoot
+      echo "Restoring dependencies..."
+      dep ensure
+      
+      get-childitem $env:ProjectRoot 
+      
+      echo "Building ..."
+      go build -o "main" ./main.go
+      
+      get-childitem $env:ProjectRoot
+# - script: |
+#     go version
+#     if [ -f Gopkg.toml ]; then
+#         curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+#         # dep ensure
+#     fi
+#     go build -v .
+#  #workingDirectory: '$(modulePath)'
+#   displayName: 'Get dependencies, then build'
 
 # - task: GoTool@0
 #   inputs:
