@@ -1,9 +1,11 @@
+trigger: none
+
 variables:
   # GOPATH: '$(Agent.BuildDirectory)/gopath' # Go workspace path
   # GOROOT: '$(Agent.BuildDirectory)/go' # Go installation path
   # GOBIN:  '$(GOPATH)/bin' # Go binaries path
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
-  GOROOT: '/usr/local/go1.10' # Go installation path
+  GOROOT: '$(Agent.BuildDirectory)/go' # Go installation path
   GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
   modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
