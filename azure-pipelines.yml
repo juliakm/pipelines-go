@@ -33,22 +33,22 @@ steps:
       $env:PATH += ":$env:GOBIN"
       echo "Added $env:GOBIN to path $env:PATH"
       
-      echo "Moving source files"
+      # echo "Moving source files"
       
-      Copy-Item $env:ProjectRoot -Filter *.* -Destination $env:GOPATH/src/demo.organization.com -Recurse
-      $env:ProjectRoot = "$env:GOPATH/src/demo.organization.com"
+      # Copy-Item $env:ProjectRoot -Filter *.* -Destination $env:GOPATH/src/demo.organization.com -Recurse
+      # $env:ProjectRoot = "$env:GOPATH/src/demo.organization.com"
       
-      echo "moving to $env:ProjectRoot"
-      cd $env:ProjectRoot
-      echo "Restoring dependencies..."
-      dep ensure
+      # echo "moving to $env:ProjectRoot"
+      # cd $env:ProjectRoot
+      # echo "Restoring dependencies..."
+      # dep ensure
       
-      get-childitem $env:ProjectRoot 
+      # get-childitem $env:ProjectRoot 
       
-      echo "Building ..."
-      go build -o "main" ./main.go
+      # echo "Building ..."
+      # go build -o "main" ./main.go
       
-      get-childitem $env:ProjectRoot
+      # get-childitem $env:ProjectRoot
 # - script: |
 #     go version
 #     if [ -f Gopkg.toml ]; then
