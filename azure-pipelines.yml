@@ -35,7 +35,7 @@ steps:
         curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
         dep ensure
     fi
-  workingDirectory: '$(modulePath)'
+  workingDirectory: '$(System.DefaultWorkingDirectory)'
   displayName: 'Download dep and run `dep ensure`'
 
 
