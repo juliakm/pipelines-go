@@ -4,10 +4,6 @@ variables:
   GOPATH: '$(Agent.BuildDirectory)/gopath' # Go workspace path
   GOROOT: '$(Agent.BuildDirectory)/go' # Go installation path
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
- # GOBIN:  '$(GOPATH)/bin' # Go binaries path
- # GOROOT: '$(Agent.BuildDirectory)/go' # Go installation path
-  #GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
-  #modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
 steps:
 - task: GoTool@0
@@ -19,24 +15,11 @@ steps:
     arguments: '-d'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 
-# - script: |
-#     mkdir -p '$(GOBIN)'
-#     mkdir -p '$(GOROOT)'
-#     mkdir -p '$(GOPATH)/pkg'
-#     mkdir -p '$(modulePath)'
-#     shopt -s extglob
-#     shopt -s dotglob
-#     mv !(gopath) '$(modulePath)'
-#     echo '##vso[task.prependpath]$(GOBIN)'
-#     echo '##vso[task.prependpath]$(GOROOT)/bin'
-#   displayName: 'Set up the Go workspace'
-
-
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      echo "Installing Dep ..."
+      echo "Installing Dep"
       go get -u github.com/golang/dep/cmd/dep
       echo "Adding GOBIN to path: $env:GOBIN"
       $env:PATH += ":$env:GOBIN"
@@ -50,7 +33,7 @@ steps:
       # echo "moving to $env:ProjectRoot"
       # cd $env:ProjectRoot
       # echo "Restoring dependencies..."
-      # dep ensure
+      dep ensure
       
       # get-childitem $env:ProjectRoot 
       
