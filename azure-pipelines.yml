@@ -1,3 +1,9 @@
+variables:
+  GOBIN:  '$(GOPATH)/bin' # Go binaries path
+  GOROOT: '/usr/local/go1.13' # Go installation path
+  GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
+  modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
+
 trigger: 
  - master
 
@@ -5,6 +11,9 @@ pool:
    vmImage: 'ubuntu-latest'
 
 steps: 
+- script: |
+    mkdir -p '$(GOBIN)'
+
 - task: GoTool@0
   inputs:
     version: '1.13.5'
@@ -35,7 +44,7 @@ steps:
         curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
         dep ensure
     fi
-  workingDirectory: '$(System.DefaultWorkingDirectory)'
+  workingDirectory: '$(modulePath)'
   displayName: 'Download dep and run `dep ensure`'
 
 
