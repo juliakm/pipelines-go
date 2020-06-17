@@ -11,17 +11,17 @@ variables:
 
 steps:
     
-- script: |
-    mkdir -p '$(GOBIN)'
-    mkdir -p '$(GOROOT)'
-    mkdir -p '$(GOPATH)/pkg'
-    mkdir -p '$(modulePath)'
-    shopt -s extglob
-    shopt -s dotglob
-    mv !(gopath) '$(modulePath)'
-    echo '##vso[task.prependpath]$(GOBIN)'
-    echo '##vso[task.prependpath]$(GOROOT)/bin'
-  displayName: 'Set up the Go workspace'
+# - script: |
+#     mkdir -p '$(GOBIN)'
+#     mkdir -p '$(GOROOT)'
+#     mkdir -p '$(GOPATH)/pkg'
+#     mkdir -p '$(modulePath)'
+#     shopt -s extglob
+#     shopt -s dotglob
+#     mv !(gopath) '$(modulePath)'
+#     echo '##vso[task.prependpath]$(GOBIN)'
+#     echo '##vso[task.prependpath]$(GOROOT)/bin'
+#   displayName: 'Set up the Go workspace'
 
 - task: PowerShell@2
   inputs:
