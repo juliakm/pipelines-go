@@ -24,5 +24,6 @@ steps:
         dep ensure
     fi
     go build -v .
+    go version
   workingDirectory: '$(modulePath)'
   displayName: 'Get dependencies, then build'
