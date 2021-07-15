@@ -22,20 +22,5 @@ steps:
       echo "Adding GOBIN to path: $env:GOBIN"
       $env:PATH += ":$env:GOBIN"
       echo "Added $env:GOBIN to path $env:PATH"
-      
-      # echo "Moving source files"
-      
-      Copy-Item $env:ProjectRoot -Filter *.* -Destination $env:GOPATH/src/demo.organization.com -Recurse
-      $env:ProjectRoot = "$env:GOPATH/src/demo.organization.com"
-      
-      echo "moving to $env:ProjectRoot"
-      cd $env:ProjectRoot
-      # echo "Restoring dependencies..."
       dep ensure
-      
-      # get-childitem $env:ProjectRoot 
-      
-      # echo "Building ..."
-      # go build -o "main" ./main.go
-      
-      # get-childitem $env:ProjectRoot
+
